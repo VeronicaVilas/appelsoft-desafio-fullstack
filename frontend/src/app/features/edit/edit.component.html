@@ -1,0 +1,36 @@
+<form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+  <div mat-dialog-title>
+    <h4>Formulário para <span>editar</span> as transações</h4>
+  </div>
+  <div class="content">
+    <div  class="row">
+      <mat-form-field>
+        <mat-label>Tipo de transação</mat-label>
+        <mat-select formControlName="transaction_type">
+          <mat-option value="ENTRADA">Entrada</mat-option>
+          <mat-option value="SAÍDA">Saída</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <input type="text" matInput formControlName="description">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Valor</mat-label>
+        <input matInput type="number" formControlName="value">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Data</mat-label>
+        <input matInput type="date" formControlName="transaction_date">
+      </mat-form-field>
+
+      <div mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Fechar</button>
+        <button type="submit" mat-button cdkFocusInitial>Salvar</button>
+      </div>
+    </div>
+  </div>
+</form>

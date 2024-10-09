@@ -50,6 +50,12 @@ php artisan migrate
 php artisan db:seed PopulatePlans
 ```
 
+4. Crie a chave de acesso JWT:
+
+```bash
+php artisan jwt:secret
+```
+
 ### Front-end
 
 Para garantir o correto funcionamento do front-end, retorne para a pasta raiz e execute os seguintes comandos:

@@ -1,0 +1,40 @@
+<div class="container">
+  <form class="form-container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h1>Login</h1>
+    <div class="credentials">
+      <p>Bem-vindo(a)! Para acessar o sistema, utilize as credenciais abaixo:</p>
+      <p><strong>Email:</strong> admin&#64;example.com</p>
+      <p><strong>Senha:</strong> admin123</p>
+    </div>
+
+    <mat-form-field class="input-box" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" placeholder="Digite seu email">
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-error *ngIf="loginForm.controls['email'].invalid">Email é obrigatório.</mat-error>
+      <mat-error *ngIf="loginForm.controls['email'].hasError('email') && loginForm.controls['email'].touched">
+        Email inválido.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input-box" appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" type="password" placeholder="Digite sua senha">
+      <button
+      mat-icon-button
+      matSuffix
+      (click)="clickEvent($event)"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide()"
+    >
+      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+      <mat-error *ngIf="loginForm.controls['password'].invalid">Senha é obrigatória.</mat-error>
+      <mat-error *ngIf="loginForm.controls['password'].hasError('incorrectPassword') && loginForm.controls['password'].touched">
+        Senha incorreta. Tente novamente.
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-fab extended type="submit" [disabled]="loginForm.invalid">Entrar</button>
+  </form>
+</div>

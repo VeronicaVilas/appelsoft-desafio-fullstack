@@ -1,0 +1,89 @@
+<app-navbar></app-navbar>
+
+<div class="container-filter">
+  <div class="filter-button">
+    <button mat-stroked-button class="all-button" (click)="showAlltransaction()">
+      <mat-icon>list</mat-icon> Todos
+    </button>
+    <button mat-stroked-button class="input-button" (click)="filterInput()">
+      <mat-icon>input</mat-icon> Entrada
+    </button>
+    <button mat-stroked-button class="output-button" (click)="filterOutput()">
+      <mat-icon>output</mat-icon> Saída
+    </button>
+  </div>
+  <mat-form-field appearance="outline" class="search-input">
+    <mat-icon matPrefix>search</mat-icon>
+    <input matInput placeholder="Pesquise aqui ..." [(ngModel)]="searchTerm" (input)="searchtransaction()">
+  </mat-form-field>
+  <button mat-fab extended class="add-button" (click)="openCreateProduct()">
+    <mat-icon>add</mat-icon>
+      Adicionar
+  </button>
+</div>
+
+<div class="financial-summary">
+  <h2>Resumo Financeiro</h2>
+</div>
+<table class="table bordered-table financial-summary">
+  <thead>
+    <tr>
+      <th style="border: 2px solid #fff;">Saldo Total</th>
+      <th style="background-color: #359143; border: 2px solid #fff;">Total de Entradas</th>
+      <th style="background-color: #960323; color:#fff; border: 2px solid #fff;">Total de Saídas</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="financialSummary">
+    <tr>
+      <td style="border: 2px solid #fff;">{{ financialSummary['Saldo total'] }}</td>
+      <td style="background-color: #359143; border: 2px solid #fff;">{{ financialSummary['Saldo total das entradas'] }}</td>
+      <td style="background-color: #960323; color:#fff; border: 2px solid #fff;">{{ financialSummary['Saldo total das saídas'] }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="table-container">
+  <table class="table bordered-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Descrição</th>
+        <th>Valor</th>
+        <th>Data</th>
+        <th>Tipo</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (transaction of filteredtransaction; track transaction.id) {
+        @defer (on immediate) {
+          <tr>
+            <td>{{ transaction.id }}</td>
+            <td>{{ transaction.description }}</td>
+            <td>{{ transaction.value }}</td>
+            <td>{{ transaction.transaction_date | date: 'dd/MM/yyyy' }}</td>
+            <td class="table-button">
+              <button mat-flat-button [ngStyle]="{ 'background-color': transaction.transaction_type === 'ENTRADA' ? '#359143' : transaction.transaction_type === 'SAÍDA' ? '#960323' : 'inherit', 'color': 'white' }">
+                  {{ transaction.transaction_type }}
+              </button>
+            <td>
+              <button mat-icon-button class="edit-button" (click)="onEdit(transaction)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="onDelete(transaction)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        }
+      }
+      @empty {
+        @defer (on immediate) {
+          <td colspan="7" class="no-items">
+            <app-no-items></app-no-items>
+          </td>
+        }
+      }
+    </tbody>
+  </table>
+</div>

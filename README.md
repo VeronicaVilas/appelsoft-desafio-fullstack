@@ -21,9 +21,33 @@ O sistema oferece um ambiente abrangente e intuitivo para o gerenciamento de tra
 
 Para garantir o correto funcionamento do back-end, execute os seguintes comandos:
 
+1. Instale as dependências
 ```bash
 cd backend
 composer install
+php artisan migrate
+php artisan db:seed PopulatePlans
+```
+
+2. Criar um arquivo .env na raiz do projeto com os seguintes parametros:
+`pode ser feito copiando o .env.example e alterando o nome para .env`
+
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+
+```
+Configure utilizando seu bancos de dados
+
+3. Popule o banco de dados:
+
+```bash
+php artisan migrate
+php artisan db:seed PopulatePlans
 ```
 
 ### Front-end

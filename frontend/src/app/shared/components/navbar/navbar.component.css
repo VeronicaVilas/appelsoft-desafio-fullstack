@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap');
+
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: #CEDAF2;
+  width: 98%;
+  margin: 0.8rem;
+}
+
+.menu-button {
+  margin-right: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-family: "Passion One", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.logo mat-icon {
+  margin-right: 0.8rem;
+  font-size: 1.6rem;
+}
+
+@media (max-width:650px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width:500px) {
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .small-button {
+    font-size: 12px;
+    padding: 4px 8px;
+    min-width: 64px;
+    height: 36px;
+  }
+
+  .small-button mat-icon {
+    font-size: 16px;
+  }
+}

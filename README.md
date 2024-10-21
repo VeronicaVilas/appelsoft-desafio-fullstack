@@ -26,7 +26,7 @@ Para garantir o correto funcionamento do back-end, execute os seguintes comandos
 cd backend
 composer install
 php artisan migrate
-php artisan db:seed PopulatePlans
+php artisan db:seed DatabaseSeeder
 ```
 
 2. Criar um arquivo .env na raiz do projeto com os seguintes parametros:

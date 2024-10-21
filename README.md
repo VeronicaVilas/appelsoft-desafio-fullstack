@@ -25,8 +25,6 @@ Para garantir o correto funcionamento do back-end, execute os seguintes comandos
 ```bash
 cd backend
 composer install
-php artisan migrate
-php artisan db:seed DatabaseSeeder
 ```
 
 2. Criar um arquivo .env na raiz do projeto com os seguintes parametros:
@@ -47,7 +45,7 @@ Configure utilizando seu bancos de dados
 
 ```bash
 php artisan migrate
-php artisan db:seed PopulatePlans
+php artisan db:seed DatabaseSeeder
 ```
 
 4. Crie a chave de acesso JWT:
